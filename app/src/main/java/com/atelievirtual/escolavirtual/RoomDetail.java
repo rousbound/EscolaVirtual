@@ -18,9 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 
-public class RoomDetail extends AppCompatActivity {
+public class   RoomDetail extends AppCompatActivity {
 
-    DatabaseHelperNew mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -28,7 +28,7 @@ public class RoomDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_detail);
 
-        mDatabaseHelper = new DatabaseHelperNew(this);
+        mDatabaseHelper = new DatabaseHelper(this);
 
         Intent in = getIntent();
 
@@ -36,13 +36,13 @@ public class RoomDetail extends AppCompatActivity {
         final int ID = in.getIntExtra("ROOM_ID", -1);
         Log.i("Print","ID_RECEIVED:" + Integer.toString(ID));
         Button saveBtn = this.findViewById(R.id.saveButton);
-        Button newNoteBtn = this.findViewById(R.id.newNoteBtn);
+        //Button newNoteBtn = this.findViewById(R.id.newNoteBtn);
 
         final EditText nameTextEdit = this.findViewById(R.id.roomNameTextEdit);
         final EditText timeTextEdit = this.findViewById(R.id.timeTextEdit);
         final EditText teacherTextEdit = this.findViewById(R.id.teacherTextEdit);
         final EditText roomNotesTextEdit = this.findViewById(R.id.roomNotesTextEdit);
-        final EditText newNoteTextEdit = this.findViewById(R.id.newNoteTextEdit);
+        //final EditText newNoteTextEdit = this.findViewById(R.id.newNoteTextEdit);
 
 
         if(index > -1)
@@ -50,7 +50,7 @@ public class RoomDetail extends AppCompatActivity {
             String name,time,teacher;
             final String notes;
 
-            Cursor data = mDatabaseHelper.getRoomDataByID(ID);
+            Cursor data = mDatabaseHelper.getDataByID("RoomData",ID);
             //data.moveToPosition(ID);
             data.moveToFirst();
             name = data.getString(1);
@@ -73,16 +73,16 @@ public class RoomDetail extends AppCompatActivity {
                    String notesUpdt = roomNotesTextEdit.getText().toString();
 
                    String[] updateInfo = {nameUpdt,timeUpdt,teacherUpdt,notesUpdt};
-                   mDatabaseHelper.updateInfo(updateInfo, ID, 1);
+                   mDatabaseHelper.updateInfo(updateInfo, "RoomData", ID);
                    toastMessage("Saved!");
                }
            });
 
-            newNoteBtn.setOnClickListener(new View.OnClickListener(){
+            /*newNoteBtn.setOnClickListener(new View.OnClickListener(){
 
               @Override
               public void onClick(View view) {
-                  String newNote = newNoteTextEdit.getText().toString();
+                  //String newNote = newNoteTextEdit.getText().toString();
 
                   Date c = Calendar.getInstance().getTime();
                   System.out.println("Current time => " + c);
@@ -97,7 +97,7 @@ public class RoomDetail extends AppCompatActivity {
                   roomNotesTextEdit.setText(datedNote + "\n\n" + notes);
 
                 }
-             });
+             });*/
 
             Log.i("Print","Greater than One");
         }
@@ -131,7 +131,7 @@ public class RoomDetail extends AppCompatActivity {
     public void AddData(String name,String time, String teacher, String notes) {
 
         String ColumnData[] = {name,time,teacher,notes};
-        boolean insertData = mDatabaseHelper.addData(ColumnData,"ClassroomData",1);
+        boolean insertData = mDatabaseHelper.addData(ColumnData,"RoomData");
 
         if (insertData) {
             toastMessage("Data Successfully Inserted!");

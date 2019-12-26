@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
     tools:context=".MainActivity">
 
     <TextView
@@ -46,6 +47,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/keysTextEdit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +71,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:ems="10"
+        android:focusable="false"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/jobTextEdit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -155,4 +158,17 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/susPointsBtn"
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/ic_more_vert_black_24dp"
+        android:text="Button"
+        android:textColor="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

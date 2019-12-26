@@ -8,38 +8,41 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by User on 2/28/2017.
  */
 
-public class DatabaseHelperNew extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "DatabaseHelper";
 
 
     private static final String DBNAME = "EscolaVirtualDB";
     private static final String COL_ID = "ID";
+    private static Map<String, String[]> TABLES_DATA;
 
-    private String[] StudentDataArr = new String[]{"name","age","room","job","keys","notes"};
-    private String[] ClassroomDataArr = new String[]{"name","time","teacher","notes"};
-    private String[][] StringData = new String[][]{this.StudentDataArr,this.ClassroomDataArr};
-    private String[] TABLE_ARRAY = new String[]{"StudentData","ClassroomData"};
+    static {
+        TABLES_DATA = new HashMap<String, String[]>();
+        TABLES_DATA.put("StudentData", new String[]{"name", "age", "room", "job", "keys", "notes"});
+        TABLES_DATA.put("RoomData", new String[]{"name", "time", "teacher", "notes"});
+    }
 
 
 
-
-    public DatabaseHelperNew(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DBNAME, null, 1);
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        createTable(db, StudentDataArr, TABLE_ARRAY[0]);
-        createTable(db, ClassroomDataArr, TABLE_ARRAY[1]);
-
+        createTable(db, TABLES_DATA.get("StudentData"), "StudentData");
+        createTable(db, TABLES_DATA.get("RoomData"), "RoomData");
 
 
 
@@ -62,18 +65,19 @@ public class DatabaseHelperNew extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP IF TABLE EXISTS " + TABLE_ARRAY[0]);
-        db.execSQL("DROP IF TABLE EXISTS " + TABLE_ARRAY[1]);
+        db.execSQL("DROP IF TABLE EXISTS " + "ProfileData");
+        db.execSQL("DROP IF TABLE EXISTS " + "RoomData");
         onCreate(db);
     }
 
-    public boolean addData(String[] stringData, String TABLE_NAME, int TABLE_INDEX) {
+    public boolean addData(String[] stringData, String TABLE_NAME) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        String[] ArrayData = TABLES_DATA.get(TABLE_NAME);
 
         for(int i =0;i<stringData.length;i++)
         {
-            contentValues.put(StringData[TABLE_INDEX][i],stringData[i]);
+            contentValues.put(ArrayData[i], stringData[i]);
             Log.d("SQL", "addData: Adding " + stringData[i] + " to " + TABLE_NAME);
         }
 
@@ -89,60 +93,50 @@ public class DatabaseHelperNew extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getData(int TABLE_INDEX){
-
-
+    public Cursor getData(String TABLE_NAME){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_ARRAY[TABLE_INDEX] + " ORDER  BY name ASC";
+
+        String query = "SELECT * FROM " + TABLE_NAME + " ORDER  BY name ASC";
         Log.i("Print", "QUERY:"+ query);
         Cursor data = db.rawQuery(query, null);
         return data;
     }
 
 
-    public Cursor getStudentDataByID(int ID)
+    public Cursor getDataByID(String TABLE_NAME, int ID)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_ARRAY[0] + " WHERE ID = " + ID;
-        Log.i("Print", "QUERY:"+ query);
-        //String id = String.valueOf(ID);
-        Cursor data = db.rawQuery(query, null);
-        Log.i("Print", "query returned");
-        return data;
-    }
 
-    public Cursor getRoomDataByID(int ID)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_ARRAY[1] + " WHERE ID = " + ID;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID = " + ID;
         Log.i("Print", "QUERY:"+ query);
-        //String id = String.valueOf(ID);
         Cursor data = db.rawQuery(query, null);
         Log.i("Print", "query returned");
         return data;
     }
 
 
-    public void updateInfo(String[] newInfo, int id, int TABLE_INDEX)
+    public void updateInfo(String[] newInfo, String TABLE_NAME, int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        for(int i=0;i<StringData[TABLE_INDEX].length;i++)
+        String[] ArrayData = TABLES_DATA.get(TABLE_NAME);
+
+        for(int i=0;i<ArrayData.length;i++)
         {
-            cv.put(StringData[TABLE_INDEX][i], newInfo[i]);
+            cv.put(ArrayData[i], newInfo[i]);
         }
 
 
         String idPass = COL_ID + " = " + (id);
-        db.update(TABLE_ARRAY[TABLE_INDEX],cv,idPass,null);
+        db.update(TABLE_NAME,cv,idPass,null);
     }
 
 
 
-    public ArrayList<String> returnListArrayData(int column,int index)
+    public ArrayList<String> returnListArrayData(int column, String TABLE_NAME)
     {
-        Cursor data = this.getData(index);
+        Cursor data = this.getData(TABLE_NAME);
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()){
             listData.add(data.getString(column));

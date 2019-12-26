@@ -9,12 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StudentDetail extends AppCompatActivity {
 
-    DatabaseHelperNew mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -22,16 +23,17 @@ public class StudentDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_detail);
 
-        mDatabaseHelper = new DatabaseHelperNew(this);
+        mDatabaseHelper = new DatabaseHelper(this);
 
         Intent in = getIntent();
 
         final int index = in.getIntExtra("ITEM_INDEX", -1);
         final int ID = in.getIntExtra("IDCLICKED", -1);
+
         Log.i("Print","ID_RECEIVED:" + Integer.toString(ID));
+
         Button saveBtn = this.findViewById(R.id.saveButton);
-
-
+        final Button extrasBtn = this.findViewById((R.id.susPointsBtn));
         final EditText nameTextEdit = this.findViewById(R.id.nameTextEdit);
         final EditText ageTextEdit = this.findViewById(R.id.ageTextEdit);
         final EditText roomTextEdit = this.findViewById(R.id.roomTextEdit);
@@ -43,7 +45,7 @@ public class StudentDetail extends AppCompatActivity {
         if(index > -1)
         {
             String name,age,room,job,keys,notes;
-            Cursor data = mDatabaseHelper.getStudentDataByID(ID);
+            Cursor data = mDatabaseHelper.getDataByID("StudentData", ID);
             data.moveToFirst();
             Log.i("Print", "Cursor Initialized");
             name = data.getString(1);
@@ -72,11 +74,20 @@ public class StudentDetail extends AppCompatActivity {
                    String notesUpdt = notesTextEdit.getText().toString();
 
                    String[] updateInfo = {nameUpdt,ageUpdt,roomUpdt,jobUpdt,keysUpdt,notesUpdt};
-                   mDatabaseHelper.updateInfo(updateInfo, ID, 0);
+                   mDatabaseHelper.updateInfo(updateInfo, "StudentData", ID);
                    toastMessage("Saved!");
                }
            });
 
+            extrasBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PopupMenu popup = new PopupMenu(StudentDetail.this, extrasBtn);
+                    //Inflating the Popup using xml file
+                    popup.getMenuInflater()
+                            .inflate(R.menu.popup_menu, popup.getMenu());
+                }
+            });
             Log.i("Print","Greater than One");
         }
         else
@@ -111,7 +122,7 @@ public class StudentDetail extends AppCompatActivity {
     public void AddData(String name, String age, String room, String job, String keys, String notes) {
 
         String ColumnData[] = {name,age,room,job,keys,notes};
-        boolean insertData = mDatabaseHelper.addData(ColumnData,"StudentData",0);
+        boolean insertData = mDatabaseHelper.addData(ColumnData,"StudentData");
 
         if (insertData) {
             toastMessage("Data Successfully Inserted!");

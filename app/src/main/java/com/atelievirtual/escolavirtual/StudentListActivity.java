@@ -23,7 +23,7 @@ public class StudentListActivity extends AppCompatActivity {
 
 
 
-    DatabaseHelperNew mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
     ListView myListView;
     String RoomName;
 
@@ -34,7 +34,7 @@ public class StudentListActivity extends AppCompatActivity {
         setContentView(R.layout.list_items);
 
 
-        mDatabaseHelper = new DatabaseHelperNew(this);
+        mDatabaseHelper = new DatabaseHelper(this);
         myListView = (ListView) findViewById(R.id.myListView);
 
         Intent in = getIntent();
@@ -52,7 +52,7 @@ public class StudentListActivity extends AppCompatActivity {
     private void populateStudentListView()
     {
         Log.i("Print","Entered populate Student List View");
-        Cursor data = mDatabaseHelper.getData(0);
+        Cursor data = mDatabaseHelper.getData("StudentData");
 
 
 
@@ -102,6 +102,7 @@ public class StudentListActivity extends AppCompatActivity {
                 showDetailActivity.putExtra("ITEM_INDEX", i);
                 showDetailActivity.putExtra("IDCLICKED",listID.get(i));
                 Log.i("Print", "IDCLICKED:" + listID.get(i).toString());
+
                 startActivity(showDetailActivity);
 
             }

@@ -13,9 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-//import android.support.annotation.Nullable;
-//import android.support.v7.app.AppCompatActivity;
-
 
 
 public class RoomListActivity extends AppCompatActivity {
@@ -23,9 +20,8 @@ public class RoomListActivity extends AppCompatActivity {
 
 
 
-    DatabaseHelperNew mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
     ListView myListView;
-    String RoomName;
     boolean isLongClick = false;
 
     @Override
@@ -35,7 +31,7 @@ public class RoomListActivity extends AppCompatActivity {
         setContentView(R.layout.list_items);
 
 
-        mDatabaseHelper = new DatabaseHelperNew(this);
+        mDatabaseHelper = new DatabaseHelper(this);
         myListView = (ListView) findViewById(R.id.myListView);
 
         Intent in = getIntent();
@@ -51,18 +47,18 @@ public class RoomListActivity extends AppCompatActivity {
 
     private void populateRoomListView()
     {
-        final Cursor data = mDatabaseHelper.getData(1);
-
-
+        final Cursor data = mDatabaseHelper.getData("RoomData");
 
         ArrayList<String> listDataName = new ArrayList<>();
         ArrayList<String> listDataDate = new ArrayList<>();
         final ArrayList<Integer> listID = new ArrayList<>();
+
         while(data.moveToNext()){
             listDataName.add(data.getString(1));
             listDataDate.add(data.getString(2));
             listID.add(data.getInt(0));
         }
+
         ItemAdapter itemAdapter = new ItemAdapter(this, listDataName, listDataDate);
         myListView.setAdapter(itemAdapter);
 
@@ -74,9 +70,11 @@ public class RoomListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent showStudentsList = new Intent(getApplicationContext(), StudentListActivity.class);
                 data.moveToPosition(i);
+
                 String room = data.getString(1);
                 Log.i("Print","ROOM CLICKED:" + room);
                 showStudentsList.putExtra("RoomName",room);
+
                 startActivity(showStudentsList);
                 isLongClick = true;
                 return false;
@@ -87,9 +85,11 @@ public class RoomListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent showRoomDetailActivity = new Intent(getApplicationContext(), RoomDetail.class);
+
                 showRoomDetailActivity.putExtra("com.example.listapp.ITEM_INDEX", i);
                 showRoomDetailActivity.putExtra("ROOM_ID", listID.get(i));
                 Log.i("Print", "IDCLICKED:" + listID.get(i).toString());
+
                 if(isLongClick == false)
                 {
                     startActivity(showRoomDetailActivity);

@@ -8,11 +8,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="733dp"
+            android:layout_height="516dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +31,7 @@
                 android:layout_marginRight="32dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/newNoteTextEdit"
+                app:layout_constraintBottom_toTopOf="@+id/roomNotesTextEdit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/timeTextEdit" />
 
@@ -74,28 +78,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/roomNotesTextEdit"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/newNoteBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:text="New Note"
-                app:layout_constraintBaseline_toBaselineOf="@+id/newNoteTextEdit"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <EditText
-                android:id="@+id/newNoteTextEdit"
-                android:layout_width="214dp"
-                android:layout_height="87dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/roomNotesTextEdit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/teacherTextEdit" />
-
             <EditText
                 android:id="@+id/roomNameTextEdit"
                 android:layout_width="wrap_content"
@@ -103,6 +85,8 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toTopOf="@+id/timeTextEdit"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,15 +118,15 @@
 
             <EditText
                 android:id="@+id/roomNotesTextEdit"
-                android:layout_width="224dp"
-                android:layout_height="181dp"
+                android:layout_width="208dp"
+                android:layout_height="288dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newNoteTextEdit" />
+                app:layout_constraintTop_toBottomOf="@+id/teacherTextEdit" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
