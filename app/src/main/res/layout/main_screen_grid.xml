@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainLayout"
+        android:layout_width="379dp"
+        android:layout_height="221dp">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="294dp"
+            android:layout_height="129dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ev2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constrainLayout"
-            android:layout_width="match_parent"
-            android:layout_height="180dp">
-
-            <TextView
-                android:id="@+id/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textColor="#FFFFFF"
-                android:textSize="42sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_wrapHeight="294"
-                tools:layout_conversion_wrapWidth="1042" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/gridLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="465dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="0dp"
@@ -64,7 +62,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/square2" />
+                        app:srcCompat="@drawable/students" />
 
                     <TextView
 
@@ -73,6 +71,7 @@
                         android:text="@string/viewAllStudents"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -95,16 +94,19 @@
                     <ImageView
                         android:id="@+id/cardImageView"
 
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="104dp"
+                        android:layout_height="107dp"
                         android:layout_marginTop="23dp"
                         android:layout_marginEnd="6dp"
                         android:layout_marginRight="6dp"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.538"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/square2" />
+                        app:layout_constraintVertical_bias="0.232"
+                        app:srcCompat="@drawable/newstudent" />
 
                     <TextView
                         android:layout_width="92dp"
@@ -112,6 +114,7 @@
                         android:text="@string/createNewStudent"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.493"
@@ -134,16 +137,18 @@
                     <ImageView
                         android:id="@+id/cardImageView"
 
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="127dp"
+                        android:layout_height="108dp"
                         android:layout_marginTop="23dp"
                         android:layout_marginEnd="6dp"
                         android:layout_marginRight="6dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.761"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/square2" />
+                        app:layout_constraintVertical_bias="0.214"
+                        app:srcCompat="@drawable/classroom2" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,6 +156,7 @@
                         android:text="@string/viewAllRooms"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.404"
@@ -180,16 +186,18 @@
                     <ImageView
                         android:id="@+id/cardImageView"
 
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_width="100dp"
+                        android:layout_height="96dp"
                         android:layout_marginTop="23dp"
                         android:layout_marginEnd="6dp"
                         android:layout_marginRight="6dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.578"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/square2" />
+                        app:layout_constraintVertical_bias="0.038"
+                        app:srcCompat="@drawable/blackboard" />
 
                     <TextView
 
@@ -200,6 +208,7 @@
                         android:text="@string/createNewRoom"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -210,5 +219,6 @@
 
 
         </androidx.gridlayout.widget.GridLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+</LinearLayout>
