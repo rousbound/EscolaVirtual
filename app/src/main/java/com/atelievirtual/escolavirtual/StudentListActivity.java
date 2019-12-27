@@ -64,6 +64,7 @@ public class StudentListActivity extends AppCompatActivity {
 
         if(RoomName == null)
         {
+            setTitle("All Students");
             Log.i("Print","Roomname = null");
             while(data.moveToNext()){
                 listDataName.add(data.getString(1));
@@ -74,6 +75,8 @@ public class StudentListActivity extends AppCompatActivity {
         }
         else
         {
+            String title = String.format("Room %s", RoomName);
+            setTitle(title);
             Log.i("Print","Roomname != null");
             while(data.moveToNext()){
                 if(data.getString(3).equals(RoomName))

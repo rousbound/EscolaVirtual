@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class   RoomDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_detail);
 
+
         mDatabaseHelper = new DatabaseHelper(this);
 
         Intent in = getIntent();
@@ -36,17 +38,19 @@ public class   RoomDetail extends AppCompatActivity {
         final int ID = in.getIntExtra("ROOM_ID", -1);
         Log.i("Print","ID_RECEIVED:" + Integer.toString(ID));
         Button saveBtn = this.findViewById(R.id.saveButton);
-        //Button newNoteBtn = this.findViewById(R.id.newNoteBtn);
+
 
         final EditText nameTextEdit = this.findViewById(R.id.roomNameTextEdit);
         final EditText timeTextEdit = this.findViewById(R.id.timeTextEdit);
         final EditText teacherTextEdit = this.findViewById(R.id.teacherTextEdit);
         final EditText roomNotesTextEdit = this.findViewById(R.id.roomNotesTextEdit);
-        //final EditText newNoteTextEdit = this.findViewById(R.id.newNoteTextEdit);
+
 
 
         if(index > -1)
         {
+
+            setTitle("Room Detail");
             String name,time,teacher;
             final String notes;
 
@@ -78,31 +82,12 @@ public class   RoomDetail extends AppCompatActivity {
                }
            });
 
-            /*newNoteBtn.setOnClickListener(new View.OnClickListener(){
-
-              @Override
-              public void onClick(View view) {
-                  //String newNote = newNoteTextEdit.getText().toString();
-
-                  Date c = Calendar.getInstance().getTime();
-                  System.out.println("Current time => " + c);
-
-                  SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                  String formattedDate = df.format(c);
-
-                  String datedNote;
-
-                  datedNote = formattedDate + "\n\n" + newNote;
-
-                  roomNotesTextEdit.setText(datedNote + "\n\n" + notes);
-
-                }
-             });*/
 
             Log.i("Print","Greater than One");
         }
         else
         {
+            setTitle("Create Room");
             saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

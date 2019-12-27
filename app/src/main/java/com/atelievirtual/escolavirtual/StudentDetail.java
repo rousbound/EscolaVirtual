@@ -44,6 +44,7 @@ public class StudentDetail extends AppCompatActivity {
 
         if(index > -1)
         {
+            setTitle("Student Detail");
             String name,age,room,job,keys,notes;
             Cursor data = mDatabaseHelper.getDataByID("StudentData", ID);
             data.moveToFirst();
@@ -92,6 +93,7 @@ public class StudentDetail extends AppCompatActivity {
         }
         else
         {
+            setTitle("Create Student");
             saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -29,7 +29,7 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.i("Print", "Entered List Screen");
         setContentView(R.layout.list_items);
-
+        setTitle("All Rooms");
 
         mDatabaseHelper = new DatabaseHelper(this);
         myListView = (ListView) findViewById(R.id.myListView);
@@ -58,7 +58,6 @@ public class RoomListActivity extends AppCompatActivity {
             listDataDate.add(data.getString(2));
             listID.add(data.getInt(0));
         }
-
         ItemAdapter itemAdapter = new ItemAdapter(this, listDataName, listDataDate);
         myListView.setAdapter(itemAdapter);
 
