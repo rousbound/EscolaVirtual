@@ -23,7 +23,7 @@ MainActivity extends AppCompatActivity {
 
         Log.i("Print","Entered MainScreen");
 
-
+        setTitle("Home");
         CardView gotoList = (CardView) findViewById(R.id.allStudentsCardView);
         CardView createProfile = (CardView) findViewById(R.id.createStudentsCardView);
         CardView gotoRoomList = (CardView) findViewById(R.id.allRoomsCardView);

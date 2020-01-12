@@ -29,7 +29,7 @@ public class   RoomDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.room_detail);
 
-
+        setTitle("Room Detail");
         mDatabaseHelper = new DatabaseHelper(this);
 
         Intent in = getIntent();
