@@ -11,9 +11,3 @@
 /build
 /captures
 .externalNativeBuild
-
-# Beware of copyrights
-app/src/main/res/drawable/students.png 
-app/src/main/res/drawable/newstudent.png
-app/src/main/res/drawable/classroom2.png 
-app/src/main/res/drawable/blackboard.png 
