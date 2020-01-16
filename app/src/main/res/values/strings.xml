@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Escola Virtual</string>
     <string name ="teacher">Teacher</string>
-    <string name ="viewAllStudents">Students</string>
-    <string name ="createNewStudent">Create Student</string>
+    <string name ="viewAllStudents">All Students</string>
+    <string name ="createNewStudent">New Student</string>
     <string name ="viewAllRooms">Rooms</string>
-    <string name ="createNewRoom">Create Room</string>
+    <string name ="createNewRoom">New Room</string>
 </resources>

@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/newbackground"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:translationY="150dp"
-        app:columnCount="2">
+        app:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        app:useDefaultMargins="true">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/allStudentsCardView"
-            android:layout_width="175dp"
-            android:layout_height="173dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:cardBackgroundColor="#00FFFFFF"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp">
@@ -26,21 +39,24 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF">
+                android:background="@drawable/layout_border">
 
                 <ImageView
                     android:id="@+id/cardImageView"
-                    android:layout_width="165dp"
-                    android:layout_height="153dp"
+                    android:layout_width="118dp"
+                    android:layout_height="98dp"
                     android:layout_marginTop="23dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginRight="6dp"
+                    android:background="#FFFFFF"
                     android:cropToPadding="false"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.549"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.269"
                     app:srcCompat="@drawable/students" />
 
                 <TextView
@@ -49,88 +65,89 @@
                     android:layout_height="wrap_content"
                     android:text="@string/viewAllStudents"
                     android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:visibility="invisible"
+                    android:textSize="18sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.493"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.574" />
+                    app:layout_constraintVertical_bias="0.892" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/createStudentsCardView"
-            android:layout_width="175dp"
-            android:layout_height="173dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_border">
 
                 <ImageView
                     android:id="@+id/cardImageView"
 
-                    android:layout_width="104dp"
-                    android:layout_height="107dp"
+                    android:layout_width="106dp"
+                    android:layout_height="100dp"
                     android:layout_marginTop="23dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginRight="6dp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.538"
+                    app:layout_constraintHorizontal_bias="0.578"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.232"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/newstudent" />
 
                 <TextView
-                    android:layout_width="92dp"
-                    android:layout_height="81dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/createNewStudent"
                     android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:visibility="invisible"
+                    android:textSize="18sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.493"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.663" />
+                    app:layout_constraintVertical_bias="0.873" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/allRoomsCardView"
-            android:layout_width="175dp"
-            android:layout_height="173dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_border">
 
                 <ImageView
                     android:id="@+id/cardImageView"
 
-                    android:layout_width="127dp"
-                    android:layout_height="108dp"
+                    android:layout_width="93dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="23dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginRight="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.761"
+                    app:layout_constraintHorizontal_bias="0.568"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.214"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/classroom2" />
 
                 <TextView
@@ -138,35 +155,29 @@
                     android:layout_height="wrap_content"
                     android:text="@string/viewAllRooms"
                     android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:visibility="invisible"
+                    android:textSize="18sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.404"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.595" />
+                    app:layout_constraintVertical_bias="0.873" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_begin="20dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/createRoomCardView"
-            android:layout_width="175dp"
-            android:layout_height="173dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="0dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_border">
 
                 <ImageView
                     android:id="@+id/cardImageView"
@@ -178,31 +189,30 @@
                     android:layout_marginRight="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.578"
+                    app:layout_constraintHorizontal_bias="0.568"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.038"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/blackboard" />
 
                 <TextView
 
-                    android:layout_width="81dp"
-                    android:layout_height="69dp"
+                    android:layout_width="88dp"
+                    android:layout_height="38dp"
                     android:lineSpacingExtra="0sp"
                     android:lines="2"
                     android:text="@string/createNewRoom"
                     android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:visibility="invisible"
+                    android:textSize="18sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.596" />
+                    app:layout_constraintVertical_bias="0.982" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
 
     </androidx.gridlayout.widget.GridLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
